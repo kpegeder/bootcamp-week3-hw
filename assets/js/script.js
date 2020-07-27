@@ -11,15 +11,23 @@ function writePassword() {
   var low = false;
   var n = false;
   var s = false;
-  var pwLength = 0;
+  var pwLength;
   var password = [];
   var pw;
   var i = 0;
   var passwordText = document.querySelector("#password");
 
   // While loops to check if questions get answer properly
-  while (pwLength < 8 || pwLength > 128) {
-    pwLength = prompt("Choose between 8 and 128 characters for the password?");
+  pwLength = parseInt(
+    prompt("Choose between 8 and 128 characters for the password?")
+  );
+  while (isNaN(pwLength) == true) {
+    pwLength = parseInt(prompt("Please enter a number"));
+    while (pwLength < 8 && pwLength <= 128) {
+      pwLength = parseInt(
+        prompt("Choose between 8 and 128 characters for the password?")
+      );
+    }
   }
 
   while (up == false && low == false && n == false && s == false) {
@@ -93,26 +101,27 @@ function writePassword() {
   passwordText.value = pw;
   console.log(pw);
 }
-// //Slider
-// var slider = document.getElementById("myRange");
-// var output = document.getElementById("demo");
-// output.innerHTML = slider.value;
 
-// slider.oninput = function () {
-//   output.innerHTML = this.value;
-// };
+//Slider
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
 
-//Checkbox
-// function getSelectedCheckboxValues(name) {
-//   const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
-//   let values = [];
-//   checkboxes.forEach((checkbox) => {
-//     values.push(checkbox.value);
-//   });
-//   return values;
-// }
+slider.oninput = function () {
+  output.innerHTML = this.value;
+};
 
-// const btn = document.querySelector("#btn");
-// btn.addEventListener("click", (event) => {
-//   alert(getSelectedCheckboxValues("color"));
-// });
+// Checkbox
+function getSelectedCheckboxValues(name) {
+  const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
+  let values = [];
+  checkboxes.forEach((checkbox) => {
+    values.push(checkbox.value);
+  });
+  return values;
+}
+
+const btn = document.querySelector("#btn");
+btn.addEventListener("click", (event) => {
+  alert(getSelectedCheckboxValues("color"));
+});
