@@ -1,28 +1,36 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
-
-//   passwordText.value = password;
-// }
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+// Write password to the #password input
 function writePassword() {
-  var pwLength = prompt("How many characters for the password?");
-  var up = confirm("Do you want upper case characters?");
-  var low = confirm("Do you want lower case characters?");
-  var n = confirm("Do you want numerical characters?");
-  var s = confirm("Do you want special characters?");
-
+  //Create Variable
+  var up = false;
+  var low = false;
+  var n = false;
+  var s = false;
+  var pwLength = 0;
   var password = [];
   var pw;
   var i = 0;
+  var passwordText = document.querySelector("#password");
 
+  // While loops to check if questions get answer properly
+  while (pwLength < 8 || pwLength > 128) {
+    pwLength = prompt("Choose between 8 and 128 characters for the password?");
+  }
+
+  while (up == false && low == false && n == false && s == false) {
+    alert("Please select at least one character type.");
+    up = confirm("Do you want upper case characters?");
+    low = confirm("Do you want lower case characters?");
+    n = confirm("Do you want numerical characters?");
+    s = confirm("Do you want special characters?");
+  }
+
+  // Create the password based on questions
   while (i < pwLength) {
     var num = Math.floor(Math.random() * 4);
     if (num === 0 && up) {
@@ -34,13 +42,11 @@ function writePassword() {
     } else if (num == 3 && s) {
       specRandom(password);
     }
-    // else {
-    //   alert("Must select a character");
-    // }
     joinPassword(password);
     i = pw.length;
   }
 
+  // Function to pick the characters
   function upperRandom(password) {
     var Letters = Math.floor(Math.random() * 26) + 65;
     password.push(String.fromCharCode(Letters));
@@ -77,12 +83,15 @@ function writePassword() {
     return password;
   }
 
+  // Function to put password together
   function joinPassword(password) {
     pw = password.join("");
     return pw;
   }
-  var passwordText = document.querySelector("#password");
+
+  // Send password back to html
   passwordText.value = pw;
+  console.log(pw);
 }
 // //Slider
 // var slider = document.getElementById("myRange");
