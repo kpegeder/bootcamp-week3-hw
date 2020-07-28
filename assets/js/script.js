@@ -2,10 +2,12 @@
 var generateBtn = document.querySelector("#generate");
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", passwordCreate);
 
-// Write password to the #password input
-function writePassword() {
+var passwordText = document.querySelector("#password");
+
+// Ask Questions
+function askPassword() {
   //Create Variable
   var up = false;
   var low = false;
@@ -99,7 +101,6 @@ function writePassword() {
 
   // Send password back to html
   passwordText.value = pw;
-  console.log(pw);
 }
 
 //Slider
@@ -111,17 +112,122 @@ slider.oninput = function () {
   output.innerHTML = this.value;
 };
 
-// Checkbox
-function getSelectedCheckboxValues(name) {
-  const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
-  let values = [];
-  checkboxes.forEach((checkbox) => {
-    values.push(checkbox.value);
-  });
-  return values;
+var pwLength = slider.value;
+// Toggle Button
+function showQuestions() {
+  var x = document.getElementById("questions");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
 }
 
-const btn = document.querySelector("#btn");
-btn.addEventListener("click", (event) => {
-  alert(getSelectedCheckboxValues("color"));
-});
+// Check Box Questions
+function checkboxQuestion() {
+  var passwordText = document.querySelector("#password");
+  var password = [];
+  var pw;
+  var j = 0;
+  var selectedlist = [];
+  // console.log(pwLength);
+  var items = document.getElementsByName("characters");
+
+  var slider = document.getElementById("myRange");
+  var output = document.getElementById("demo");
+  output.innerHTML = slider.value;
+
+  slider.oninput = function () {
+    output.innerHTML = this.value;
+  };
+
+  var pwLength = slider.value;
+
+  // Check box questions
+  for (var i = 0; i < items.length; i++) {
+    if (items[i].type == "checkbox" && items[i].checked == true) {
+      selectedlist.push((items[i] = true));
+    } else {
+      selectedlist.push((items[i] = false));
+    }
+  }
+
+  // Create the password based on questions
+  while (j < pwLength) {
+    var num = Math.floor(Math.random() * 4);
+    if (num === 0 && selectedlist[0]) {
+      upperRandom(password);
+    } else if (num === 1 && selectedlist[1]) {
+      lowerRandom(password);
+    } else if (num === 2 && selectedlist[2]) {
+      numRandom(password);
+    } else if (num == 3 && selectedlist[3]) {
+      specRandom(password);
+    } else if (
+      selectedlist[0] == false &&
+      selectedlist[1] == false &&
+      selectedlist[2] == false &&
+      selectedlist[3] == false
+    ) {
+      alert("Please fill in a checkbox");
+      break;
+    }
+    joinPassword(password);
+    j = pw.length;
+  }
+
+  // Function to pick the characters
+  function upperRandom(password) {
+    var Letters = Math.floor(Math.random() * 26) + 65;
+    password.push(String.fromCharCode(Letters));
+    return password;
+  }
+
+  function lowerRandom(password) {
+    var letters = Math.floor(Math.random() * 26) + 97;
+    password.push(String.fromCharCode(letters));
+    return password;
+  }
+
+  function numRandom(password) {
+    var number = Math.floor(Math.random() * 10) + 48;
+    password.push(String.fromCharCode(number));
+    return password;
+  }
+
+  function specRandom(password) {
+    var num = Math.floor(Math.random() * 4);
+    if (num === 0) {
+      var num1 = Math.floor(Math.random() * 15) + 33;
+      password.push(String.fromCharCode(num1));
+    } else if (num === 1) {
+      var num1 = Math.floor(Math.random() * 7) + 58;
+      password.push(String.fromCharCode(num1));
+    } else if (num === 2) {
+      var num1 = Math.floor(Math.random() * 6) + 91;
+      password.push(String.fromCharCode(num1));
+    } else {
+      var num1 = Math.floor(Math.random() * 4) + 123;
+      password.push(String.fromCharCode(num1));
+    }
+    return password;
+  }
+
+  // Function to put password together
+  function joinPassword(password) {
+    pw = password.join("");
+    return pw;
+  }
+
+  passwordText.value = pw;
+}
+
+// Create Password Based on Display
+function passwordCreate() {
+  var x = document.getElementById("questions");
+  if (x.style.display === "none") {
+    askPassword();
+  } else {
+    checkboxQuestion();
+  }
+}

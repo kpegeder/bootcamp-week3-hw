@@ -24,26 +24,35 @@
             aria-label="Generated Password"
           ></textarea>
         </div>
-        <div class="slidecontainer">
-          <input
-            type="range"
-            min="8"
-            max="128"
-            value="16"
-            class="slider"
-            id="myRange"
-          />
-          <p>Value: <span id="demo"></span></p>
+        <!-- Toggle Button -->
+        <div class="displayQs">
+          <button onclick="showQuestions()">Display Questions</button>
         </div>
-        <input type="checkbox" name="vehicle1" value="true" />
-        <label for="vehicle1"> Upper Cases</label><br />
-        <input type="checkbox" name="vehicle2" value="true" />
-        <label for="vehicle2"> Lower Cases</label><br />
-        <input type="checkbox" name="vehicle3" value="true" checked />
-        <label for="vehicle3"> Numbers</label><br />
-        <input type="checkbox" name="vehicle3" value="true" />
-        <label for="vehicle3"> Special Characters</label><br />
-        <br />
+        <!-- Display Questions -->
+        <div id="questions">
+          <!-- Slider Characters -->
+          <div class="slidecontainer">
+            <input
+              type="range"
+              min="8"
+              max="128"
+              value="16"
+              class="slider"
+              id="myRange"
+            />
+            <p>Value: <span id="demo"></span></p>
+          </div>
+          <!-- Checkbox for type of characters -->
+          <input type="checkbox" name="characters" value="true" />
+          <label for="upper"> Upper Cases</label><br />
+          <input type="checkbox" name="characters" value="true" />
+          <label for="lower"> Lower Cases</label><br />
+          <input type="checkbox" name="characters" value="true" checked />
+          <label for="number"> Numbers</label><br />
+          <input type="checkbox" name="characters" value="true" />
+          <label for="special"> Special Characters</label><br />
+          <br />
+        </div>
         <div class="card-footer">
           <button id="generate" class="btn">
             Generate Password

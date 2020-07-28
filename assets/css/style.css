@@ -172,3 +172,7 @@ button[disabled] {
   background: #4caf50;
   cursor: pointer;
 }
+
+.displayQs {
+  text-align: center;
+}
