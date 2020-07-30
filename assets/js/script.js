@@ -6,18 +6,73 @@ generateBtn.addEventListener("click", passwordCreate);
 
 var passwordText = document.querySelector("#password");
 
+//Slider
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
+
+slider.oninput = function () {
+  output.innerHTML = this.value;
+};
+
+// Toggle Button
+function showQuestions() {
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+// Def this
+
+var toggleQs = document.querySelector("#showQs");
+toggleQs.addEventListener("click", showQuestions);
+
+var pwLength;
+
+// Function to pick the characters
+function letterRandom(password, isLowerCase) {
+  var Letters = Math.floor(Math.random() * 26) + 65;
+  if (isLowerCase) {
+    return String.fromCharCode(Letters).toLowerCase();
+  } else {
+    return String.fromCharCode(Letters);
+  }
+}
+
+function numRandom(password) {
+  var number = Math.floor(Math.random() * 10) + 48;
+  return String.fromCharCode(number);
+}
+
+function specRandom(password) {
+  var n = Math.floor(Math.random() * 4);
+  if (n === 0) {
+    var num1 = Math.floor(Math.random() * 15) + 33;
+    return String.fromCharCode(num1);
+  } else if (n === 1) {
+    var num1 = Math.floor(Math.random() * 7) + 58;
+    return String.fromCharCode(num1);
+  } else if (n === 2) {
+    var num1 = Math.floor(Math.random() * 6) + 91;
+    return String.fromCharCode(num1);
+  } else {
+    var num1 = Math.floor(Math.random() * 4) + 123;
+    return String.fromCharCode(num1);
+  }
+}
+
 // Ask Questions
 function askPassword() {
   //Create Variable
-  var up = false;
-  var low = false;
-  var n = false;
-  var s = false;
-  var pwLength;
+  var upperCase = false;
+  var lowerCase = false;
+  var numbers = false;
+  var special = false;
   var password = [];
   var pw;
   var i = 0;
-  var passwordText = document.querySelector("#password");
 
   // While loops to check if questions get answer properly
   pwLength = parseInt(
@@ -32,65 +87,33 @@ function askPassword() {
     }
   }
 
-  while (up == false && low == false && n == false && s == false) {
+  while (
+    upperCase == false &&
+    lowerCase == false &&
+    numbers == false &&
+    special == false
+  ) {
     alert("Please select at least one character type.");
-    up = confirm("Do you want upper case characters?");
-    low = confirm("Do you want lower case characters?");
-    n = confirm("Do you want numerical characters?");
-    s = confirm("Do you want special characters?");
+    upperCase = confirm("Do you want upper case characters?");
+    lowerCase = confirm("Do you want lower case characters?");
+    numbers = confirm("Do you want numerical characters?");
+    special = confirm("Do you want special characters?");
   }
 
   // Create the password based on questions
   while (i < pwLength) {
-    var num = Math.floor(Math.random() * 4);
-    if (num === 0 && up) {
-      upperRandom(password);
-    } else if (num === 1 && low) {
-      lowerRandom(password);
-    } else if (num === 2 && n) {
-      numRandom(password);
-    } else if (num == 3 && s) {
-      specRandom(password);
+    var n = Math.floor(Math.random() * 4);
+    if (n === 0 && upperCase) {
+      password.push(letterRandom(password, false));
+    } else if (n === 1 && lowerCase) {
+      password.push(letterRandom(password, true));
+    } else if (n === 2 && numbers) {
+      password.push(numRandom(password));
+    } else if (n == 3 && special) {
+      password.push(specRandom(password));
     }
     joinPassword(password);
     i = pw.length;
-  }
-
-  // Function to pick the characters
-  function upperRandom(password) {
-    var Letters = Math.floor(Math.random() * 26) + 65;
-    password.push(String.fromCharCode(Letters));
-    return password;
-  }
-
-  function lowerRandom(password) {
-    var letters = Math.floor(Math.random() * 26) + 97;
-    password.push(String.fromCharCode(letters));
-    return password;
-  }
-
-  function numRandom(password) {
-    var number = Math.floor(Math.random() * 10) + 48;
-    password.push(String.fromCharCode(number));
-    return password;
-  }
-
-  function specRandom(password) {
-    var num = Math.floor(Math.random() * 4);
-    if (num === 0) {
-      var num1 = Math.floor(Math.random() * 15) + 33;
-      password.push(String.fromCharCode(num1));
-    } else if (num === 1) {
-      var num1 = Math.floor(Math.random() * 7) + 58;
-      password.push(String.fromCharCode(num1));
-    } else if (num === 2) {
-      var num1 = Math.floor(Math.random() * 6) + 91;
-      password.push(String.fromCharCode(num1));
-    } else {
-      var num1 = Math.floor(Math.random() * 4) + 123;
-      password.push(String.fromCharCode(num1));
-    }
-    return password;
   }
 
   // Function to put password together
@@ -103,45 +126,14 @@ function askPassword() {
   passwordText.value = pw;
 }
 
-//Slider
-var slider = document.getElementById("myRange");
-var output = document.getElementById("demo");
-output.innerHTML = slider.value;
-
-slider.oninput = function () {
-  output.innerHTML = this.value;
-};
-
-var pwLength = slider.value;
-// Toggle Button
-function showQuestions() {
-  var x = document.getElementById("questions");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
-
 // Check Box Questions
 function checkboxQuestion() {
-  var passwordText = document.querySelector("#password");
   var password = [];
   var pw;
   var j = 0;
   var selectedlist = [];
-  // console.log(pwLength);
   var items = document.getElementsByName("characters");
-
-  var slider = document.getElementById("myRange");
-  var output = document.getElementById("demo");
-  output.innerHTML = slider.value;
-
-  slider.oninput = function () {
-    output.innerHTML = this.value;
-  };
-
-  var pwLength = slider.value;
+  pwLength = slider.value;
 
   // Check box questions
   for (var i = 0; i < items.length; i++) {
@@ -156,13 +148,13 @@ function checkboxQuestion() {
   while (j < pwLength) {
     var num = Math.floor(Math.random() * 4);
     if (num === 0 && selectedlist[0]) {
-      upperRandom(password);
+      password.push(letterRandom(password, false));
     } else if (num === 1 && selectedlist[1]) {
-      lowerRandom(password);
+      password.push(letterRandom(password, true));
     } else if (num === 2 && selectedlist[2]) {
-      numRandom(password);
+      password.push(numRandom(password));
     } else if (num == 3 && selectedlist[3]) {
-      specRandom(password);
+      password.push(specRandom(password));
     } else if (
       selectedlist[0] == false &&
       selectedlist[1] == false &&
@@ -176,43 +168,6 @@ function checkboxQuestion() {
     j = pw.length;
   }
 
-  // Function to pick the characters
-  function upperRandom(password) {
-    var Letters = Math.floor(Math.random() * 26) + 65;
-    password.push(String.fromCharCode(Letters));
-    return password;
-  }
-
-  function lowerRandom(password) {
-    var letters = Math.floor(Math.random() * 26) + 97;
-    password.push(String.fromCharCode(letters));
-    return password;
-  }
-
-  function numRandom(password) {
-    var number = Math.floor(Math.random() * 10) + 48;
-    password.push(String.fromCharCode(number));
-    return password;
-  }
-
-  function specRandom(password) {
-    var num = Math.floor(Math.random() * 4);
-    if (num === 0) {
-      var num1 = Math.floor(Math.random() * 15) + 33;
-      password.push(String.fromCharCode(num1));
-    } else if (num === 1) {
-      var num1 = Math.floor(Math.random() * 7) + 58;
-      password.push(String.fromCharCode(num1));
-    } else if (num === 2) {
-      var num1 = Math.floor(Math.random() * 6) + 91;
-      password.push(String.fromCharCode(num1));
-    } else {
-      var num1 = Math.floor(Math.random() * 4) + 123;
-      password.push(String.fromCharCode(num1));
-    }
-    return password;
-  }
-
   // Function to put password together
   function joinPassword(password) {
     pw = password.join("");
@@ -222,9 +177,12 @@ function checkboxQuestion() {
   passwordText.value = pw;
 }
 
+// Set Display
+var x = document.getElementById("questions");
+x.style.display = "none";
+
 // Create Password Based on Display
 function passwordCreate() {
-  var x = document.getElementById("questions");
   if (x.style.display === "none") {
     askPassword();
   } else {

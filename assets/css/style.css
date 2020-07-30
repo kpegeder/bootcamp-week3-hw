@@ -176,3 +176,7 @@ button[disabled] {
 .displayQs {
   text-align: center;
 }
+
+#questions {
+  display: none;
+}
