@@ -135,6 +135,7 @@ button[disabled] {
     font-size: 0.8rem;
   }
 }
+
 .slidecontainer {
   width: 100%;
 }
@@ -161,7 +162,7 @@ button[disabled] {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: #4caf50;
+  background: hsl(360, 91%, 36%);
   cursor: pointer;
 }
 
@@ -169,12 +170,13 @@ button[disabled] {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: #4caf50;
+  background: hsl(360, 91%, 36%);
   cursor: pointer;
 }
 
 .displayQs {
   text-align: center;
+  padding: 10px;
 }
 
 #questions {

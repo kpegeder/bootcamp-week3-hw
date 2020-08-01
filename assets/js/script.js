@@ -1,21 +1,30 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
+var passwordText = document.querySelector("#password");
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", passwordCreate);
 
-var passwordText = document.querySelector("#password");
+// Define global variables
+var pwLength;
 
-//Slider
-var slider = document.getElementById("myRange");
-var output = document.getElementById("demo");
+// Slider
+var slider = document.getElementById("passLength");
+var output = document.getElementById("slideValue");
 output.innerHTML = slider.value;
 
 slider.oninput = function () {
   output.innerHTML = this.value;
 };
 
+// Set Display
+var x = document.getElementById("questions");
+x.style.display = "none";
+
 // Toggle Button
+var toggleQs = document.querySelector("#showQs");
+toggleQs.addEventListener("click", showQuestions);
+
 function showQuestions() {
   if (x.style.display === "none") {
     x.style.display = "block";
@@ -24,14 +33,7 @@ function showQuestions() {
   }
 }
 
-// Def this
-
-var toggleQs = document.querySelector("#showQs");
-toggleQs.addEventListener("click", showQuestions);
-
-var pwLength;
-
-// Function to pick the characters
+// Function to pick letters
 function letterRandom(password, isLowerCase) {
   var Letters = Math.floor(Math.random() * 26) + 65;
   if (isLowerCase) {
@@ -41,11 +43,13 @@ function letterRandom(password, isLowerCase) {
   }
 }
 
+// Function to pick numbers
 function numRandom(password) {
   var number = Math.floor(Math.random() * 10) + 48;
   return String.fromCharCode(number);
 }
 
+// Function to pick special characters
 function specRandom(password) {
   var n = Math.floor(Math.random() * 4);
   if (n === 0) {
@@ -176,10 +180,6 @@ function checkboxQuestion() {
 
   passwordText.value = pw;
 }
-
-// Set Display
-var x = document.getElementById("questions");
-x.style.display = "none";
 
 // Create Password Based on Display
 function passwordCreate() {
