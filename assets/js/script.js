@@ -82,9 +82,16 @@ function askPassword() {
   pwLength = parseInt(
     prompt("Choose between 8 and 128 characters for the password?")
   );
-  while (isNaN(pwLength) == true) {
+
+  while (pwLength < 8 || pwLength > 128) {
+    pwLength = parseInt(
+      prompt("Choose between 8 and 128 characters for the password?")
+    );
+  }
+
+  while (isNaN(pwLength) === true) {
     pwLength = parseInt(prompt("Please enter a number"));
-    while (pwLength < 8 && pwLength <= 128) {
+    while (pwLength < 8 || pwLength > 128) {
       pwLength = parseInt(
         prompt("Choose between 8 and 128 characters for the password?")
       );
