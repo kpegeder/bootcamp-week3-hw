@@ -2,7 +2,7 @@
 
 Created an application that will create a random password based on the input from an user. The JavaScript will create a dynamically updated HTML and CSS.
 
-The website can be accessed at (https://kpegeder.github.io/bootcamp-week3-hw/).
+The website can be accessed at (https://kpegeder.github.io/password-generator/).
 
 The website will have a button to display question about which characters to include in the password.
 
