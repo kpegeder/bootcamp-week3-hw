@@ -1,20 +1,31 @@
-# bootcamp-week3-hw
+# Password Generator
 
-Created an application that will create a random password based on the input from an user. The JavaScript will create a dynamically updated HTML and CSS.
+## Summary
 
-The website can be accessed at (https://kpegeder.github.io/password-generator/).
+The application will randomly generate a password based on your input.
 
-The website will have a button to display question about which characters to include in the password.
+## How To Use
 
-When a slidebar and checkbox are shown, the user will be require to have a checkbox selected to get a password.
+The website has two different ways to create a random password.
 
-If the questions are not shown, the user will be prompted to answer a set of questions about what to include in the password.
+1. Click on the Generate password. You will be propmted to answer a series question about what you want in you password. Once, all of the questions are answered, a password will be generated.
 
-JavaScript code includes:
--functions
--if/else statements
--while and for loops
--confirm and prompt
--getElementById
--querySelector
--addEventListener
+2. Click on the Display Questions button. A slidebar and checkbox will be shown, you are required to check at leats on checkbox. When you are satisfied with the password requirements, clike the generate password button to create a password.
+
+## Demo
+
+![Password Generator](./assets/images/Password-Generator.gif)
+
+### Technology Used:
+
+- HTML
+- CSS
+- JavaScript
+
+### Links
+
+Deployed URL: https://kpegeder.github.io/password-generator/
+
+GitHub Repository URL: https://github.com/kpegeder/password-generator
+
+### Lincense - Mit
