@@ -28,4 +28,4 @@ Deployed URL: https://kpegeder.github.io/password-generator/
 
 GitHub Repository URL: https://github.com/kpegeder/password-generator
 
-### Lincense - Mit
+### Lincense - MIT
